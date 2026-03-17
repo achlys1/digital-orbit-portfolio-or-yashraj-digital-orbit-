@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashraj Sharma | Digital Orbit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-deep: #020611;
+            --bg-panel: rgba(10, 20, 40, 0.7);
+            --cyan-glow: #00f0ff;
+            --blue-glow: #0055ff;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Canvas Background */
+        #space-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(2, 6, 17, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .logo img {
+            height: 50px;
+            /* Turns the golden logo into a glowing cyan/blue */
+            filter: hue-rotate(190deg) brightness(1.5) drop-shadow(0 0 8px var(--cyan-glow));
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan-glow);
+            text-shadow: 0 0 10px var(--cyan-glow);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        section {
+            margin-bottom: 100px;
+            padding: 40px;
+            background: var(--bg-panel);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 85, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1, h2, h3 {
+            color: var(--cyan-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .hologram-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+        }
+
+        .hologram-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            filter: contrast(1.2) saturate(0.8) sepia(0.3) hue-rotate(180deg);
+            opacity: 0.8;
+        }
+
+        .hologram-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow);
+            opacity: 0.6;
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 0; }
+        }
+
+        .tech-text p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            color: var(--cyan-glow);
+            font-weight: bold;
+        }
+
+        /* Grid for Stats & Certificates */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2);
+            border-color: var(--cyan-glow);
+        }
+
+        /* Orbital Acknowledgments */
+        .orbit-system {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .center-core {
+            position: absolute;
+            text-align: center;
+            z-index: 10;
+            background: var(--bg-deep);
+            padding: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--cyan-glow);
+            box-shadow: 0 0 30px var(--cyan-glow);
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(0, 240, 255, 0.3);
+            border-radius: 50%;
+            animation: rotate linear infinite;
+        }
+
+        .orbit-1 { width: 300px; height: 300px; animation-duration: 20s; }
+        .orbit-2 { width: 450px; height: 450px; animation-duration: 30s; animation-direction: reverse; }
+        .orbit-3 { width: 600px; height: 600px; animation-duration: 40s; }
+
+        .planet {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-panel);
+            color: var(--cyan-glow);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--cyan-glow);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: transparent;
+            color: var(--cyan-glow);
+            border: 1px solid var(--cyan-glow);
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--cyan-glow);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px var(--cyan-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="space-canvas"></canvas>
+
+    <nav>
+        <div class="logo">
+            <img src="Untitled.jpg" alt="Likhakriti Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#about">Database</a>
+            <a href="#achievements">Milestones</a>
+            <a href="#acknowledgments">Support Orbits</a>
+            <a href="https://github.com/achlys1" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/likhakriti/" target="_blank">LinkedIn</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <section id="about" class="visible">
+            <div class="hero-content">
+                <div class="hologram-container">
+                    <img src="IMG-20260204-WA0019.jpg" alt="Yashraj Sharma">
+                    <div class="hologram-scanline"></div>
+                </div>
+                <div class="tech-text">
+                    <h1>System Protocol: <br>Yashraj Sharma</h1>
+                    <h3>Student Developer | Digital Strategist | Chess Player (1390 Elo)</h3>
+                    <p>I started as a "ghost" on LinkedIn, struggling in the bubble. Through sheer determination, I engineered my own growth, achieving a <span class="highlight">12.5x reach ratio</span> and turning 6 impressions into thousands.</p>
+                    <p>Whether I'm writing Python scripts, exploring Generative AI, preparing for JEE, or penning poetry under my personal brand, I view every challenge as a system to be optimized.</p>
+                    <a href="#achievements" class="btn">Initialize Growth Data</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements">
+            <h2>Milestones & Deployments</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Likhakriti (Anaam Kalam)</h3>
+                    <p>Scaled a digital writing platform to <span class="highlight">800,000+ reads</span> and 300+ followers on Kavishala.</p>
+                    <p>Self-taught SEO mastery, ranking the brand #1 on Google Search and within Google AI Overviews without external guidance.</p>
+                </div>
+                <div class="card">
+                    <h3>achlys1-lofi-yrs-studio</h3>
+                    <p>Engineered a functional Python-based Lofi Music Player. Managed project code and documentation via GitHub, focusing on clean code practices.</p>
+                </div>
+                <div class="card">
+                    <h3>Digital Impact</h3>
+                    <p>Currently commanding significant organic reach on LinkedIn, utilizing a "Blackhole" strategy to draw in audiences and build a professional network.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates">
+            <h2>Skill Upgrades & Certifications</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>AI/ML Certificate Course</h3>
+                    <p>IIT Roorkee</p>
+                    <p class="highlight">Status: Application Accepted / Active</p>
+                </div>
+                <div class="card">
+                    <h3>AWS Cloud Practitioner</h3>
+                    <p>Amazon Web Services</p>
+                    <p class="highlight">Status: Training in Progress</p>
+                    <p>Goal: Hosting a professional cloud-based portfolio.</p>
+                </div>
+                <div class="card">
+                    <h3>Chess Mastery</h3>
+                    <p>Chess.com</p>
+                    <p class="highlight">Rating: 1390 Elo</p>
+                    <p>1.5+ years of strategic analytical training.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="acknowledgments">
+            <h2>The Support Network</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Every line of code and every achievement is powered by these foundational pillars.</p>
+            
+            <div class="orbit-system">
+                <div class="center-core">
+                    <h3 style="margin:0; font-size: 1.2rem;">Yashraj's<br>Determination</h3>
+                    <p style="color: #ffd700; font-weight: bold; font-size: 1.5rem; margin-top: 10px;">₹100</p>
+                    <p style="font-size: 0.7rem;">Catalyst from<br>Kanushree Verma Ma'am</p>
+                </div>
+
+                <div class="orbit orbit-1">
+                    <div class="planet">Anjali Kedia Ma'am (11th Grade)</div>
+                </div>
+
+                <div class="orbit orbit-2">
+                    <div class="planet">Principal Anindita Gosh</div>
+                </div>
+
+                <div class="orbit orbit-3">
+                    <div class="planet">Parents: Pavan & Jyoti Sharma</div>
+                    <div class="planet" style="top: auto; bottom: -15px;">Guardians: Praveen & Kushboo Sharma</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- 1. Aerospace Canvas Particles ---
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        const numberOfParticles = 150;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() * 1) - 0.5;
+                this.speedY = (Math.random() * 1) - 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.01;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 240, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            // Connect lines
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
+                                   ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < 15000) {
+                        ctx.strokeStyle = 'rgba(0, 240, 255, 0.05)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particlesArray = [];
+            init();
+        });
+
+        // --- 2. Scroll Reveal Animation ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
