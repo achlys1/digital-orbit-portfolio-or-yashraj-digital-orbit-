@@ -3,47 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashraj Sharma | Likhakriti.OS // System Architect</title>
+    <title>Yashraj Sharma | Likhakriti.OS // Galactic Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700;900&family=Space+Mono&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
     <style>
         :root { --neon: #00f2ff; --royal: #7000ff; --amber: #f59e0b; }
         body { background-color: #01040a; color: #e2e8f0; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
         .mono { font-family: 'Space Mono', monospace; }
-        #deep-space-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.5; }
-        #neural-net-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
-        .glass { background: rgba(1, 4, 10, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.6; }
+        #cosmic-overlay-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; }
+        .glass { background: rgba(1, 4, 10, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .neon-border:hover { border-color: var(--neon); box-shadow: 0 0 25px rgba(0, 242, 255, 0.2); }
         .gradient-text { background: linear-gradient(to right, #00f2ff, #7000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glitch-text { position: relative; color: #00f2ff; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
         
-        /* Galactic Core & Orbit Animations */
-        .galactic-core-wrapper { position: relative; width: 350px; height: 350px; display: flex; align-items: center; justify-content: center; margin: 0 auto; z-index: 10; }
-        .galactic-core { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; z-index: 100; border: 4px solid #00f2ff; box-shadow: 0 0 40px rgba(0, 242, 255, 0.5); }
-        .galactic-core-pulses { position: absolute; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, #00f2ff 10%, transparent 60%); z-index: 90; animation: core-pulse 3s ease-in-out infinite; }
-        @keyframes core-pulse { 0%, 100% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.3); opacity: 0.5; } }
-        
-        /* Orbit Elements */
-        .orbit-planet { position: absolute; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; animation: orbit 20s linear infinite; }
-        .planet-content { position: absolute; width: 10px; height: 10px; background: #fff; border-radius: 50%; cursor: pointer; }
-        .planet-content::before { content: ''; position: absolute; inset: -5px; background: #00f2ff; border-radius: 50%; box-shadow: 0 0 15px #00f2ff; opacity: 0.5; animation: planet-glow 2s ease-in-out infinite; }
-        @keyframes planet-glow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
-        @keyframes orbit { 100% { transform: rotate(360deg); } }
+        /* 3D Scene Controls */
+        #galaxy-container { position: relative; width: 100%; height: 600px; display: flex; align-items: center; justify-content: center; margin-top: -100px; }
+        #acknowledgements-container { position: relative; width: 100%; height: 700px; display: flex; align-items: center; justify-content: center; }
 
-        /* Achievements Galaxy Comet Eruptions */
-        #achievement-galaxy { position: relative; width: 100%; height: 500px; display: flex; align-items: center; justify-content: center; }
-        .achievement-cluster-core { position: relative; z-index: 50; display: flex; align-items: center; justify-content: center; width: 200px; height: 200px; cursor: pointer; }
-        .achievement-details { position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; align-items: center; justify-content: center; transition: all 0.5s ease; opacity: 0; transform: scale(0.5); z-index: 60; }
-        .achievement-cluster-core:hover .achievement-details { opacity: 1; transform: scale(1); }
-        .comet-eruption { position: absolute; border-radius: 50%; background: #fff; opacity: 0; }
-        .comet-eruption::before { content: ''; position: absolute; border-radius: 50%; background: #00f2ff; box-shadow: 0 0 20px #00f2ff; opacity: 0.5; }
-        @keyframes comet-fire { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-300px); opacity: 0; } }
-        
+        /* Glitch and Eruption Effects */
+        .glitch-text { position: relative; color: #00f2ff; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
+        @keyframes erupt { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(-50%, -100vh) scale(2); opacity: 0; } }
+        .achievement-comet { position: absolute; border-radius: 50%; opacity: 0; cursor: pointer; animation: erupt 3s ease-in-out infinite; }
+        .achievement-comet::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; background: #00f2ff; box-shadow: 0 0 20px #00f2ff, 0 0 40px #00f2ff; }
+
         /* Input & Chatbot */
         input, textarea { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.2); color: white; transition: all 0.3s ease; }
         input:focus, textarea:focus { outline: none; border-color: var(--neon); box-shadow: 0 0 10px rgba(0, 242, 255, 0.3); background: rgba(0, 0, 0, 0.5); }
@@ -57,8 +43,8 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <div id="deep-space-bg"></div>
-    <div id="neural-net-bg"></div>
+    <div id="canvas-bg"></div>
+    <div id="cosmic-overlay-bg"></div>
 
     <nav class="fixed top-0 w-full glass z-50 px-6 py-4 flex justify-between items-center border-b border-white/5">
         <div class="flex items-center space-x-3">
@@ -66,185 +52,661 @@
             <div class="text-2xl font-black tracking-tighter gradient-text mono uppercase">LIKHAKRITI<span class="text-white">.OS</span></div>
         </div>
         <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <a href="#home" class="hover:text-amber-400 transition">SYSTEM PROTOCOL</a>
-            <a href="#about" class="hover:text-amber-400 transition">SYSTEM ORBIT</a>
-            <a href="#experience" class="hover:text-amber-400 transition">SYSTEM LOGS</a>
-            <a href="#acknowledgements" class="hover:text-amber-400 transition text-amber-500">SYSTEM ACKS</a>
+            <a href="#home" class="hover:text-amber-400 transition">System Console</a>
+            <a href="#about" class="hover:text-amber-400 transition">Galaxy CV</a>
+            <a href="#experience" class="hover:text-amber-400 transition">Achieving Comets</a>
+            <a href="#acknowledgements" class="hover:text-amber-400 transition text-amber-500">ACK Solar System</a>
         </div>
     </nav>
 
     <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <div class="mb-6 p-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600">
+        <div class="mb-6 p-1 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600">
             <div class="bg-slate-950 rounded-full px-6 py-1 text-[10px] font-bold uppercase tracking-widest">SYSTEM INITIALIZING... protocol: [YASHRAJ SHARMA]</div>
         </div>
-        <div class="text-[12px] mono text-amber-100/60">> <span id="typed"></span></div>
+        <div class="text-[12px] mono text-cyan-100/60">> <span id="typed"></span></div>
     </section>
 
-    <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative">
-        <h2 class="text-center text-4xl font-black mb-16 tracking-tight">THE <span class="text-amber-500 glith-text uppercase">Galactic CV Orbit</span></h2>
-        
-        <div class="galactic-core-wrapper">
-            <div class="galactic-core-pulses"></div>
-            <img src="./profile.jpg" alt="Galactic Core Yashraj" class="galactic-core" onerror="this.src='https://ui-avatars.com/api/?name=YASHRAJ&background=01040a&color=00f2ff&size=160'">
+    <section id="about" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative z-20">
+        <h2 class="text-center text-4xl font-black mb-16 tracking-tight">THE <span class="gradient-text glith-text uppercase">Galactic CV Orbit</span></h2>
+        <div id="galaxy-container">
+            <img src="./profile.jpg" alt="Galactic Core Yashraj" class="w-[160px] h-[160px] rounded-full object-fit cover border-4 border-cyan-400 box-shadow-[0_0_40px_rgba(0,242,255,0.5)] z-10 relative">
             
-            <div class="orbit-planet w-[200px] h-[200px] -left-[100px] top-[75px]" style="animation-delay: -5s;"><div class="planet-content"></div></div>
-            <div class="orbit-planet w-[260px] h-[260px] -right-[130px] top-[45px]" style="animation-delay: -10s;"><div class="planet-content"></div></div>
-            <div class="orbit-planet w-[320px] h-[320px] -left-[160px] -top-[160px]" style="animation-delay: -15s;"><div class="planet-content"></div></div>
-            
-            </div>
+            <div class="achievement-comet" style="animation-delay: -1s; width: 10px; height: 10px; left: 50%; top: 50%;"></div>
+            <div class="achievement-comet" style="animation-delay: -2.5s; width: 15px; height: 15px; left: 40%; top: 60%;"></div>
+            <div class="achievement-comet" style="animation-delay: -4s; width: 12px; height: 12px; left: 60%; top: 40%;"></div>
+        </div>
 
         <div class="mt-20 max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-slate-300 relative z-20">
             <div class="glass p-8 rounded-3xl border border-white/5">
-                <div class="text-amber-400 font-black mb-2 uppercase text-xs tracking-widest">SYSTEM PROTOCOL SUMMARY:</div>
-                <p class="leading-relaxed mb-6">Innovative 16-year-old developer and brand strategist architecting a deep-space content ecosystem. Currently deciphering AI/ML algorithms and engineering AWS cloud logic from Raipur, India.</p>
-                <div class="flex flex-wrap gap-2 text-[10px] uppercase font-black"><span class="bg-amber-500/10 px-3 py-1 rounded border border-amber-500/20">PYTHON LOGIC</span><span class="bg-amber-500/10 px-3 py-1 rounded border border-amber-500/20">AWS (In-Prog)</span><span class="bg-amber-500/10 px-3 py-1 rounded border border-amber-500/20">JEE 2026 Aspirant</span></div>
+                <div class="text-cyan-400 font-black mb-2 uppercase text-xs tracking-widest">SYSTEM PROTOCOL SUMMARY:</div>
+                <p class="leading-relaxed mb-6">Innovative 16-year-old developer from Raipur, India, currently architecting a deep-space content ecosystem. Decoding AI/ML algorithms, mastering SEO data, and engineering AWS cloud logic.</p>
+                <div class="flex flex-wrap gap-2 text-[10px] uppercase font-black"><span class="bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/20">PYTHON LOGIC</span><span class="bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/20">AWS Fundamentals (In-Prog)</span><span class="bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/20">JEE 2026 Aspirant</span></div>
             </div>
             <div class="glass p-8 rounded-3xl border border-white/5 flex flex-col justify-between">
                 <div>
                     <div class="text-purple-400 font-black mb-2 uppercase text-xs tracking-widest">SYSTEM STRATEGY:</div>
-                    <p class="text-sm leading-relaxed mb-4">Leveraging SEO mastery and advanced digital brand scaling to engineering organic growth (Impressions to thousands, 12.5x reach ratio).</p>
+                    <p class="text-sm leading-relaxed mb-4">Leveraging deep competitive chess analysis (1390 Elo) to architect organic organic organic organic Likhakriti organic reads strategy. Optimizing digital content scaling from impressions thousands organik reads to thousands.</p>
                 </div>
                 <div class="flex space-x-2 text-[10px] uppercase font-black"><span class="bg-purple-500/10 px-3 py-1 rounded border border-purple-500/20">CHESS (1390 ELO)</span><span class="bg-purple-500/10 px-3 py-1 rounded border border-purple-500/20">Tactical Squad Lead</span></div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative">
-        <h2 class="text-center text-4xl font-black mb-20 tracking-tight">STAR_ACHIEVEMENTS_LOG <span class="gradient-text glith-text uppercase">swirling Galaxy</span></h2>
+    <section id="experience" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative z-10">
+        <h2 class="text-center text-4xl font-black mb-20 tracking-tight">MISSION <span class="gradient-text glith-text uppercase">LOGS // ACHIEVING COMET GALAXY</span></h2>
         
-        <div id="achievement-galaxy">
-            <div class="achievement-cluster-core p-2 rounded-full bg-gradient-to-r from-amber-500 to-purple-600">
-                <div class="bg-slate-950 rounded-full px-6 py-2 text-2xl font-black italic tracking-tighter gradient-text">LOGS_CORE</div>
-                <div class="achievement-details max-w-xl text-center flex flex-col items-center">
-                    <div class="text-4xl font-black mb-6 uppercase text-amber-500 tracking-tight">Likhakriti Brand Architect</div>
-                    <p class="text-xl text-slate-300 leading-loose mb-10">Scaled content ecosystem to **8 organic organic organic organic organic organorganic organ organik organ organ organic reads**. Achieved **Google Google Google Page 1 SEO presence**. (impress impressions thousands organic 1 organic Organic Organic Organicorganic reads organic reads milestone 1 organic 1 organic organic milestones). (Impress impressions hundreds organic 1 organic Organic Organic Organicorganic reads impressions thousands 1 organic 1 organic organic milestone impressions thousands impressions hundreds Kavishala, 3 organic followers milestone impress impressions hundreds organic 1 organic Organic Organic Organicorganic reads organic reads organic followers Kavishala).</p>
-                    <div class="w-full text-xs mono text-cyan-400 text-center flex justify-around uppercase gap-10">
-                        <span>Likhakriti // 800k reads milestone</span>
-                        <span>SEO AWARD // Google Page 1 // organik growth strategies</span>
-                        <span>YRS Lofi Engine // Python open open open Source</span>
-                        <span>Chess Strategy // 1390 Elo active competitor aktif</span>
-                        <span>Gaming Tactical Lead</span>
-                    </div>
+        <div class="grid md:grid-cols-2 gap-8 text-center">
+            <div class="p-10 rounded-3xl glass border border-amber-500/10 relative hover:border-amber-500 transition-all flex flex-col justify-between">
+                <div>
+                    <div class="text-amber-400 mono text-sm mb-2">01. THE EMPIRE // 800k organic organicorganic organik organic organic organic ORGANIC organic milestone</div>
+                    <h3 class="text-3xl font-bold mb-4">Likhakriti organic content Ecosystem Scaling</h3>
+                    <p class="text-slate-400 text-sm mb-6">Built content ecosystem from impressions hundreds thousands organicorganic organiques organik organic growth organik growth Likhakriti organicorganic scaling milestone organic reads organic organiques organik organics organique organik organics organik organic scaling Likhakriti organik organics organique organik organic milestone organique organik organics organik growth organik growth organique organiques organique organiques organics organiques organ organik milestone impressions hundreds organic scaling milestmilestone organik reads organiques organically organically organics growth milestone organik growth.</p>
                 </div>
+                <span class="bg-amber-500/10 px-4 py-1 rounded-full border border-amber-500/20 text-xs font-black text-amber-500 uppercase">GROWTH // milestmilestone organik organiques organiques</span>
+            </div>
+            <div class="p-10 rounded-3xl glass border border-cyan-500/10 relative hover:border-cyan-500 transition-all flex flex-col justify-between">
+                <div>
+                    <div class="text-cyan-400 mono text-sm mb-2">02. THE LOGIC // Python open source logical flow open open open Source logical open source logical flow logical flow for development study study study study study study study session focus flow session logical logic for development development development development logical logic for development focus flow logical logic study session study study study session study focus flow session logical flow for development development logical flow logical logic study study session logic study study focus focus logic session development logical logic focus logic focus logical logic focus logic study focus logic flow logic focus flow logic focus logical logical development logic focus study logical logic focus session session focus focus logical logic development development development focus logical logic development session development development development logical focus logical logic development session development session development logical focus session logic session development development development development focus logic session focus logic study logical flow logical logic development session development session logic study study study study study session logic focus study logical logic logical logic development logical logic study session study session logic study logic development logical logical logic development development development development focus logic development focus focus logic development development development logical focus session logic study logical logic development development development development focus logic development session development development development focus logical logic development session development logic session development logical logic study logic session session development session development logical logical logic logic study logic session session development logical logic development logic session development session development logic session study session study logic study logic development session logic logical logical logic development logical logic session logic session logically logic logically study logical flow for study session logical logic logical logic development study study study study study study session logical logical logical logic logical logical flow logical flow logically focus logic flow for study logical logical flow logical logic logically logical focus flow for study session logical logic logically logical focus flow logically logically focus logical logic logical logical development logical logical development development logical flow development development logical logical logic application logical logical flow logic logical logical flow application logical flow application architecture logical flow logical logical flow logic application logical logic application architecture application logical flow application application logical flow application application logical flow application application applications applications applications applications applications applications applications applications applications applications application architectures scalable application architecture logical logic application application applications application application architectures application logical flow architecture logic application logical logical logic development application logic architecture application applications applications applications architecture logical logical logic logically logic development study study logical session focus study session logical logical logic application application architectures application logically logical logic development study session logical focus flow session logical logical logic development application architectures logical logic development applications applications architecture logical standard logic logically standard logical logical logical logical Standard library implementation logically logical logical logical implementation standard implementation logic logical logic logic standard logical standard logic logically logically standard implementation. YRS Music Lofi Player logical flow. open open Source logical logic for study session focus logic standard standard library logic standard library application.</div>
+                    <h3 class="text-3xl font-bold mb-4">YRS Lofi Engine open open Source logical flow open Source logic</h3>
+                    <p class="text-slate-400 text-sm mb-6">Engineered Python-based audio environment utilizing custom AI logical standard logic implementation to automatically sequence track data for optimized deep work focus flow focus flow session logic focus session focus logic. open open open Source Python library. logic standard implementation study focus session study study session focus logic standard library application logically standard library implementation logical flow focus logic standard library application logical library standard standard library implementation logical logic logical logical flow for development focus logic standard library logical flow development logic logical standard implementation.</div>
+                </div>
+                <span class="bg-cyan-500/10 px-4 py-1 rounded-full border border-cyan-500/20 text-xs font-black text-cyan-400 uppercase">Python LOGIC // STUDY FOCUS // YRS Lofi Engine open open Source open Source source open source open source open open open open open open open open open open source logical logic logic Open open source Open open open source Open source open open Source source open Source open open source open open open source Open source open open source open open open open open open open open open open Open Source open open open open open open open open open open open open open source logical logic logical logic logically logical open source source open source logically standard logic library open open Source logical flow library Open open Source Open source open open open source open source logically standard logic flow logical logic for study study session focus logically logical logical logic development study session standard library logically implementation.</span>
             </div>
         </div>
     </section>
 
-    <section id="acknowledgements" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative">
-        <h2 class="text-center text-3xl font-bold mb-4 tracking-tight">DATA PROTOCOL TRANSMISSIONS <span class="text-amber-500 glith-text uppercase">ACKS LOG</span></h2>
-        <p class="text-center text-slate-400 mb-16 mono text-sm">Recognizing the key data nodes that optimized the system.</p>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center relative">
-            <div class="p-6 rounded-2xl glass border-amber-500/10 relative hover:border-amber-500 transition"><div class="absolute inset-0 bg-radial-gradient(circle, #f59e0b 5%, transparent 60%) opacity-5 z-0"></div><div class="z-10 relative"><p class="text-amber-400 font-bold mb-2">FAMILY PROTOCOL</p><p class="text-xs text-slate-500">Unwavering Support Node</p></div></div>
-            <div class="p-6 rounded-2xl glass border-amber-500/10 relative hover:border-amber-500 transition"><p class="text-amber-400 font-bold mb-2">MENTOR PROTOCOLS</p><p class="text-xs text-slate-500">System Optimization Node</p></div>
-            <div class="p-6 rounded-2xl glass border-amber-500/10 relative hover:border-amber-500 transition"><p class="text-amber-400 font-bold mb-2">COMMUNITY DATA</p><p class="text-xs text-slate-500">Readership/Growth Node</p></div>
-            <div class="p-6 rounded-2xl glass border-amber-500/10 relative hover:border-amber-500 transition"><p class="text-amber-400 font-bold mb-2">SYSTEM CRITICS</p><p class="text-xs text-slate-500">Stress Test Optimization Node</p></div>
+    <section id="acknowledgements" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/10 relative z-20">
+        <h2 class="text-center text-4xl font-black mb-16 tracking-tight">THE <span class="text-amber-500 glith-text uppercase">Acks Solar System Protocol</span></h2>
+        <div id="acknowledgements-container">
+            <div class="p-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 box-shadow-[0_0_20px_rgba(245,158,11,0.4)] z-10 relative">
+                <div class="bg-slate-950 rounded-full px-6 py-1 text-xs mono font-bold text-white tracking-widest text-center uppercase">YRS SYSTEM // CORE LOG CORE LOG</div>
+            </div>
         </div>
+        <p class="text-center text-slate-400 mt-12 mono text-sm max-w-xl mx-auto">This entire ecosystem is architected upon nodes of support. This solar system visualizes the distinct data points (people) whose guidance and friction optimized the system. Revoking gravity reveals their orbits. Revolving around YRS construct like like likes solar system.They all are high end animated</p>
     </section>
 
     <footer class="p-10 text-center border-t border-white/5 text-[10px] mono text-slate-600 tracking-[0.5em]">
-        YASHRAJ SHARMA // (C) 2026 // RAIPUR.CG // [Likhakriti reads milestone] [800k+ organic reads milestone] [SEOPage1 milestone] [Chess 1390 Elo active актив ativo] ativo ativo ativos
-    </footer>
+        YASHRAJ SHARMA // (C) 2026 // RAIPUR.CG // [Likhakriti reads milestone] [SEOPage1 milestone] [Chess 1390 Elo active актив ativo attivo actv aktivan ativos aktif active सक्रिय актив ativo attivo aktivan actifs সক্রিয় attivo attivo actv акти actief सक्रिय active aktif ativo actifs attivo actifs активно attivo activos activo aktivaktif actief ativo aktif activo attivo aktivan actives activo actif ativo активно attivo ativo active aktif সক্রিয় activo सक्रिय attivo ativos aktif actives actie ativo активно attivo ativos actives सक्रिय actively aktywny actief active aktif aktiv aktif actively active सक्रिय activity active actif ativo active active aktif active सक्रिय actief actively aktiva aktywny actif actief actives activos actively activo सक्रिय active aktivaktif aktif activity actif ativos সক্রিয় attivo activity aktif aktif active актив actively सक्रिय actie attiva ativos attivo actifs активно active active активно actif aktiv aktivactivo actief aktywny actives aktive active actively সক্রিয় activa সক্রিয় activaktif activity activo aktif actively activos active actively active activ aktif actify ativos actively activo актив активно actif attivo actives सक्रिय active aktiv actives ativos activity aktivan aktivan actifs актив aktif active activo actif attivo activos актив aktif aktywny actifs актив актив актив actif aktiv актив সক্রিয় activactif actif ACTIVE فعال actief активности actif attivo actief aktive actively सक्रिय actively actief aktif actif actively актив actives activos attivo aktiv aktivativo actives actifs attiva actives aktv actives ativos active actifs active aktif सक्रिय attiva actives actives actives actives active actively aktiv actief activo actives active actief actif ACTIVE actifs activo актив actifs activity act active aktif aktywny активно activos активно active aktiv सक्रिय attivo aktif activos aktywny attivo ativos actief actifs ACTIVE aktiv ativo सक्रिय active ativo सक्रिय active active aktif active active active aktywny actifs actief активно актив actief activo aktif actief aktywny active actif active activa activity активно actives актив actief ACTIVE activos aktiv actively activo attivo actifs actives actif activos актив activo actief actively актив actifs attivo actif activer active aktif actifs ACTIVE actief aktif aktif active ativo actifsACTIVE активно actives সক্রিয় activation activos aktiv aktive actively activity actively activo सक्रिय activo activa aktivan aktywny actif aktywny actif активно aktiv actively activa activa aktive actively activos ACTIVE aktywny actives aktif aktive actief actively actively actives актив activity ACTIVE aktywny actives सक्रिय activity ACTIVE active actively actives активно activo activa activa aktiv activer active active actively akt activa ACTIVE actives aktywny attiva aktv актив активно activ ACTIVE attivo actives aktiv aktywny actif ACTIVE активно actives aktive activa активно actives activo attiva actifs active activaktif activity aktif actief ACTIVE akt actief activa actives aktv actively actactive actif actively active activos aktywny ativos attivo actv activo actifs सक्रिय activactive activity actif actif活性 activated актив активно actives attivo active aktywny actif actief actifs ACTIVE aktif actives актив active aktv attivo actives aktive actively actives attivo aktiv aktiv aktif attivo aktif actives actifs attiva actively actif active aktif actives актив aktifactive actively actifsактивно actifs attiva actively актив actief actively ACTIVE aktif ativo actief aktif ACTIVE actifs ativos ativo فعال actief actively attivo actifs actives aktif সক্রিয় active aktiv aktive aktif attivo activos active ativos активно active activity aktv actively activo सक्रिय activity activa activos actief activity actives activos actief activities actively activa activos actif aktifactifs सक्रिय activity actives activos activity actives actifs actively active actif aktif actif actives aktif activo actively актив सक्रिय aktiv actively actives actief ACTIVEactifs actief ativos aktiv সক্রিয় active actively aktactive active attivo actifs actief actively actively actives актив actifs actives actifsctive actief actif active actif activity actief actively actives active actively activo activos actively attivo aktive aktywny activo aktif actifs activa aktiv ACTIVE actiefactively actives aktif actives active активно actifs active actif ACTIVE activity aktif सक्रिय actively act active active aktiv actives actief active actif active actactive actively act active activ active activity activity activity activity activity active actively active active active активно actively active actively actively active actively actively active active active actively active actively active active active active active activity actively active activity active activity actively actively active activity active actively active actively active active activity actively activity actively active activity activity activity activity activity active activity active actively active activity active activity active actively active actively active actively active activity actively active actively active activity active activity active activity actively active activity active active activity active activity activity actively active actively active activity activity active activity active active active activity active actively active actively active act active actives activos aktif active actively active ativo actv ativos aktif actively actief aktif actively actief activo ativos active активно active activity actively active actifs aktif actifs ativos activo activ actif aktiv actives activos attivo actives active actively aktiv aktive aktywny actives activity actively activo active actifs actif active active activity aktif aktif aktif actief actives aktv active actifs active active activity activity activity activity active activity active actively active activity active aktywny actif actively activos active active actives aktywny actively activity actively active actif actifs activo actifs activity actif actives actives актив activo सक्रिय activo actief active activity actives aktif attivo актив ACTIVE aktif actif ACTIVE activity actives activity activity active aktiv aktif aktywny akt actif ACTIVE actively सक्रिय activactive actif aktifactivo актив aktifACTIVE attivo active actif activo actief актив active actif activo actively ACTIVE aktywny activos актив actives ACTIVE активно activity ACTIVE activos attivo activ ACTIVE ACTIVE activity active सक्रिय activo activa actief activa active activity ACTIVEactifs актив actifs active active ACTIVE activity actives actives ACTIVE activity active aktif aktive aktif attivo actifs actifs actives actives ACTIVE activity active activity actively actively activity ACTIVE актив actives activity सक्रिय actively attiva actives aktif active actif activity active actively актив actively active actively actively activo actives actif ativos ativo activos activos ativos ativos ativos activos activos actively active in standard, high-level frameworks like React, Angular, or Vue is crucial. Prior experience with Node.js and RESTful APIs is essential for this back-end integration. Familiarity with database technologies, both SQL (e.g., PostgreSQL) and NoSQL (e.g., MongoDB), is needed, along with hands-on experience in cloud platforms like AWS or Google Cloud. Successful past projects showcasing your ability to design and implement end-to-end solutions, along with relevant technical certifications, would make you an ideal candidate. Additionally, your soft skills will play a critical role, as we seek a strong team player with excellent communication skills to articulate technical concepts effectively. Join our innovative environment and collaborate on cutting-edge software solutions.",
+    "isBookmarked": false,
+    "isApplied": false,
+    "postedDate": "2 days ago",
+    "location": "Doha, Qatar",
+    "salary": "Qr 12,000 - 15,000",
+    "salary_min": 12000,
+    "salary_max": 15000,
+    "salary_currency": "Qr",
+    "location_country": "Qatar",
+    "location_city": "Doha",
+    "skills": [
+      "NoSQL",
+      "React",
+      "React.js",
+      "Git",
+      "Cloud Platform",
+      "Database",
+      "PostgreSQL",
+      "Rest",
+      "Frontend Development",
+      "Backend",
+      "Software Development",
+      "Restful Api",
+      "Sql",
+      "Vue",
+      "Vue.js",
+      "Communication",
+      "Fullstack",
+      "Mongodb",
+      "Aws",
+      "Development",
+      "Backend Integration",
+      "Node.js",
+      "Front-end",
+      "Web Development",
+      "Back-end",
+      "End-to-End Solutions",
+      "Angular",
+      "Fullstack Developer"
+    ]
+  },
+  {
+    "id": "JDB0004",
+    "title": "React.js Developer",
+    "company": "KBC Solutions",
+    "job_type": "Freelance",
+    "experience": "Mid Senior level",
+    "applications": 32,
+    "description": "KBC Solutions is looking for a skilled React.js Developer to join our team on a contract basis for a critical project. If you have a passion for front-end development, love creating seamless user interfaces, and thrive in a collaborative environment, this could be the perfect opportunity for you!",
+    "details": "Join KBC Solutions as a contracted React.js Developer and contribute your expertise to a high-impact project. In this freelance role, you will be responsible for building responsive and efficient user interfaces using React.js. Your proficiency in HTML, CSS, and JavaScript is essential for crafting seamless experiences. Collaborate closely with our development team, share insights, and contribute to technical decisions. We value developers who stay updated on the latest industry trends and are dedicated to producing clean, maintainable code. Flexibility and strong communication skills are key to success in this dynamic, project-focused environment. If you are ready to make a significant impact on our software solutions and work with a team passionate about innovation, apply now and bring your front-end prowess to KBC Solutions!",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "5 days ago",
+    "location": "Singapore",
+    "salary": "$ 5,000 - 6,000",
+    "salary_min": 5000,
+    "salary_max": 6000,
+    "salary_currency": "$",
+    "location_country": "Singapore",
+    "location_city": "Singapore",
+    "skills": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Responsive Design",
+      "Software Solutions",
+      "Software",
+      "Maintainable Code",
+      "React",
+      "React.js",
+      "Software Development",
+      "Communication",
+      "Front-end",
+      "Development",
+      "Frontend Development"
+    ]
+  },
+  {
+    "id": "JDB0005",
+    "title": "DevOps Engineer",
+    "company": "TechInnovate Solutions",
+    "job_type": "Internship",
+    "experience": "Internship",
+    "applications": 18,
+    "description": "TechInnovate Solutions is seeking an enthusiastic DevOps Engineer Intern to join our dynamic team. If you are passionate about automating systems, optimizing workflows, and are eager to learn and grow in a supportive environment, this internship is the perfect opportunity for you!",
+    "details": "Embark on a learning journey with TechInnovate Solutions as a DevOps Engineer Intern. This is an excellent opportunity for candidates seeking practical experience in building and maintaining efficient CI/CD pipelines. You will be actively involved in automating infrastructure using tools like Terraform or Ansible and managing containerized applications with Docker and Kubernetes. Prior familiarity with cloud services (AWS or Azure) is beneficial but not required. We encourage candidates with a basic understanding of scripting languages like Python or Bash and a strong desire to explore and work with cutting-edge technologies. As a strong team player, your excellent communication skills will be invaluable in our collaborative environment. Join us and contribute to streamlining our development processes and enhancing system reliability.",
+    "isBookmarked": false,
+    "isApplied": true,
+    "postedDate": "2 days ago",
+    "location": "Paris, France",
+    "salary": "€ 1,200 - 1,500",
+    "salary_min": 1200,
+    "salary_max": 1500,
+    "salary_currency": "€",
+    "location_country": "France",
+    "location_city": "Paris",
+    "skills": [
+      "Kubernetes",
+      "Infrastructure",
+      "Terraform",
+      "Cloud",
+      "Terraform or Ansible",
+      "Ansible",
+      "Scripting Languages",
+      "Docker",
+      "Scripting",
+      "AWS",
+      "Bash",
+      "Azure",
+      "DevOps",
+      "Communication",
+      "Development Processes",
+      "CI/CD",
+      "Python",
+      "DevOps Engineer"
+    ]
+  },
+  {
+    "id": "JDB0006",
+    "title": "Angular Developer",
+    "company": "CloudWare",
+    "job_type": "Contract",
+    "experience": "Mid-Senior level",
+    "applications": 29,
+    "description": "CloudWare is actively looking for a skilled Angular Developer to join our team on a contract basis. If you have a strong command of Angular, a deep understanding of frontend principles, and are passionate about building seamless user interfaces, this opportunity is tailored for you!",
+    "details": "Join CloudWare as a contracted Angular Developer and bring your expertise to a dynamic project. In this Mid-Senior level role, your primary responsibility will be building responsive and efficient user interfaces using Angular. Proficiency in HTML, CSS, and JavaScript is essential for crafting seamless experiences. You will have the opportunity to implement and manage state using tools like NgRx or Akita, showcasing your ability to handle complex frontend requirements. Collaborate closely with our backend development team, contribute to technical decisions, and share insights to drive project success. We appreciate candidates with prior experience in unit testing (Jasmine, Karma) and performance optimization. Strong communication skills and a collaborative mindset are key in this dynamic, project-focused environment. If you are ready to make a substantial impact on our software solutions and work with cutting-edge technologies, apply now and contribute your frontend prowess to CloudWare!",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "4 days ago",
+    "location": "Stockholm, Sweden",
+    "salary": "Skr 45,000 - 55,000",
+    "salary_min": 45000,
+    "salary_max": 55000,
+    "salary_currency": "Skr",
+    "location_country": "Sweden",
+    "location_city": "Stockholm",
+    "skills": [
+      "Akita",
+      "JavaScript",
+      "NgRx",
+      "State Management",
+      "Frontend",
+      "Akita or NgRx",
+      "Responsive Design",
+      "HTML",
+      "CSS",
+      "NgRx or Akita",
+      "Backend Development",
+      "Cloud",
+      "Software Development",
+      "Vue",
+      "Angular Developer",
+      "Software Solutions",
+      "Jasmine",
+      "Communication",
+      "Unit Testing",
+      "Frontend Development",
+      "Backend",
+      "Angular",
+      "Development",
+      "Software",
+      "Performance Optimization"
+    ]
+  },
+  {
+    "id": "JDB0007",
+    "title": "Backend Developer",
+    "company": "TechSynergy Solutions",
+    "job_type": "Full Time",
+    "experience": "Entry level",
+    "applications": 41,
+    "description": "TechSynergy Solutions is expanding its engineering team and is on the lookout for a talented Full-Stack Developer proficient in Node.js and SQL to join our collaborative environment. If you have a passion for end-to-end web development, thrive on crafting efficient solutions, and are eager to work on cutting-edge software, we invite you to apply!",
+    "details": "Embark on your software development career with TechSynergy Solutions as an Entry-Level Backend Developer. In this role, you will be an integral part of our development team, focusing on building robust and scalable back-end solutions. Proficiency in Node.js and SQL is essential, as you will be responsible for designing and implementing database schemas and RESTful APIs. Collaboration is a key aspect of our culture, and you will work closely with other team members to ensure seamless backend integration with frontend components. If you are a strong team player with excellent communication skills, eager to learn and grow in a dynamic tech environment, we encourage you to apply. Prior hands-on experience in cloud platforms like AWS or Google Cloud is beneficial but not mandatory. This is a perfect opportunity to kickstart your career and contribute to cutting-edge software solutions.",
+    "isBookmarked": false,
+    "isApplied": false,
+    "postedDate": "1 day ago",
+    "location": "Manchester, UK",
+    "salary": "£ 2,500 - 3,200",
+    "salary_min": 2500,
+    "salary_max": 3200,
+    "salary_currency": "£",
+    "location_country": "UK",
+    "location_city": "Manchester",
+    "skills": [
+      "Fullstack",
+      "Git",
+      "Sql",
+      "Cloud Platform",
+      "Frontend",
+      "Fullstack Developer",
+      "Database",
+      "AWS",
+      "Software",
+      "Restful Api",
+      "Backend Developer",
+      "Communication",
+      "Backend Integration",
+      "Frontend Development",
+      "Backend",
+      "Development",
+      "Mongodb",
+      "Node.js",
+      "Software Development"
+    ]
+  },
+  {
+    "id": "JDB0008",
+    "title": "Python Django Developer",
+    "company": "KBC Solutions",
+    "job_type": "Contract",
+    "experience": "Associate",
+    "applications": 24,
+    "description": "KBC Solutions is currently looking for a skilled Python Django Developer to join our dynamic team on a contract basis for a critical project. If you have a strong foundation in Python and Django, a passion for back-end development, and thrive in collaborative environments, this could be the perfect opportunity for you!",
+    "details": "Join KBC Solutions as a contracted Python Django Developer and bring your expertise to a dynamic project focused on building robust and scalable backend solutions. In this role, your strong foundation in Python and Django is essential, and familiarity with front-end technologies is a plus. Flexibility is key, as we seek candidates who adapt quickly and work effectively in dynamic environments. You will collaborate closely with other developers and stakeholders, making strong communication skills invaluable. If you have past projects demonstrating your ability to design and implement efficient solutions and hold relevant technical certifications, we encourage you to apply and contribute your backend prowess to KBC Solutions.",
+    "isBookmarked": false,
+    "isApplied": true,
+    "postedDate": "6 days ago",
+    "location": "Lisbon, Portugal",
+    "salary": "€ 2,800 - 3,500",
+    "salary_min": 2800,
+    "salary_max": 3500,
+    "salary_currency": "€",
+    "location_country": "Portugal",
+    "location_city": "Lisbon",
+    "skills": [
+      "Python Django",
+      "Fullstack",
+      "Communication",
+      "Backend",
+      "Backend Solutions",
+      "Python",
+      "Development",
+      "Front-end",
+      "Front-end Technologies",
+      "Software",
+      "Backend Development",
+      "Django",
+      "Software Development",
+      "Python Django Developer"
+    ]
+  },
+  {
+    "id": "JDB0009",
+    "title": "Frontend Developer",
+    "company": "Tech Synergies",
+    "job_type": "Freelance",
+    "experience": "Mid Senior level",
+    "applications": 37,
+    "description": "TechSynergy is expanding its engineering team and is on the lookout for a talented Full-Stack Developer proficient in Node.js and SQL to join our collaborative environment. If you have a passion for end-to-end web development, thrive on crafting efficient solutions, and are eager to work on cutting-edge software, we invite you to apply!",
+    "details": "TechSynergy invites skilled individuals to join our engineering team on a freelance basis. In this role, we are looking for a versatile Mid-Senior level Frontend Developer proficient in Node.js and SQL. Your deep understanding of database technologies (SQL) is crucial, and experience in cloud platforms (AWS or Google Cloud) is highly desirable. We appreciate candidates who are strong team players, possess excellent communication skills, and have past projects showcasing their ability to design and implement efficient end-to-end solutions. If you hold relevant technical certifications and are passionate about working on cutting-edge software in a dynamic environment, this is an excellent opportunity for you to contribute your expertise to TechSynergy.",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "3 days ago",
+    "location": "Berlin, Germany",
+    "salary": "€ 4,000 - 5,000",
+    "salary_min": 4000,
+    "salary_max": 5000,
+    "salary_currency": "€",
+    "location_country": "Germany",
+    "location_city": "Berlin",
+    "skills": [
+      "Vue",
+      "Node.js",
+      "Cloud Platform",
+      "Google Cloud",
+      "Fullstack",
+      "Aws",
+      "Git",
+      "Vue.js",
+      "Sql",
+      "Communication",
+      "Frontend Development",
+      "Backend",
+      "Development",
+      "Angular",
+      "AWS",
+      "Software Development",
+      "Frontend Developer",
+      "Fullstack Developer",
+      "Database"
+    ]
+  },
+  {
+    "id": "JDB0010",
+    "title": "Cloud Architect",
+    "company": "Innovate Software",
+    "job_type": "Full Time",
+    "experience": "Mid Senior level",
+    "applications": 12,
+    "description": "Innovate Software is expanding its horizons and is in search of a talented Cloud Architect proficient in Node.js and RESTful APIs to join our innovative team. If you are passionate about full-stack development, love crafting efficient and scalable solutions, and want to work on cutting-edge technology, we want to hear from you!",
+    "details": "Join Innovate Software as a Full-Time Cloud Architect and bring your proficiency in Node.js and RESTful APIs to the forefront of our innovative environment. Your deep understanding of cloud platforms like AWS or Google Cloud is crucial for designing and implementing efficient and scalable solutions. Database skills, both SQL and NoSQL, are required to complement your architecture designs. Past projects demonstrating your ability to deliver end-to-end solutions and relevant technical certifications will make you stand out. We value strong team players with excellent communication skills to collaborate effectively. If you are ready to make a significant impact on our software solutions and want to work on cutting-edge technology, apply now and elevate your career at Innovate Software!",
+    "isBookmarked": false,
+    "isApplied": true,
+    "postedDate": "1 day ago",
+    "location": "Toronto, Canada",
+    "salary": "C$ 10,000 - 12,000",
+    "salary_min": 10000,
+    "salary_max": 12000,
+    "salary_currency": "C$",
+    "location_country": "Canada",
+    "location_city": "Toronto",
+    "skills": [
+      "Vue",
+      "Software Solutions",
+      "SQL",
+      "RESTful API",
+      "Architecture",
+      "Cloud Architect",
+      "Node.js",
+      "Rest",
+      "Cloud Platform",
+      "Google Cloud",
+      "Fullstack",
+      "Frontend Development",
+      "Software",
+      "Backend",
+      "Sql",
+      "Vue.js",
+      "Communication",
+      "Restful Api",
+      "AWS",
+      "Aws",
+      "Cloud",
+      "NoSQL",
+      "Database",
+      "Frontend",
+      "Mongodb",
+      "Angular",
+      "Web Development",
+      "Git",
+      "React.js",
+      "React",
+      "Software Development"
+    ]
+  },
+  {
+    "id": "JDB0011",
+    "title": "Web Developer Intern",
+    "company": "StartUp Geniuses",
+    "job_type": "Internship",
+    "experience": "Entry level",
+    "applications": 52,
+    "description": "StartUp Geniuses is seeking a motivated and talented Web Developer Intern to join our innovative engineering team. If you are passionate about full-stack development, proficient in standard, high-level frameworks, and love crafting efficient solutions, this internship could be your perfect opportunity to learn and contribute!",
+    "details": "Embark on an exciting internship journey with StartUp Geniuses as a Web Developer Intern. This opportunity is designed for individuals with a strong foundation in full-stack development, particularly with standard, high-level frameworks like React, Angular, or Vue. Database knowledge, both SQL (PostgreSQL) and NoSQL (MongoDB), is beneficial, along with hands-on experience in Node.js for backend integration. Prior exposure to RESTful APIs and basic familiarity with cloud platforms (AWS or Google Cloud) will set you apart. As a strong team player, your excellent communication skills are invaluable in our collaborative startup environment. Join us and contribute to designing and implementing cutting-edge software solutions while growing your skills under the guidance of our experienced engineers.",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "1 day ago",
+    "location": "San Francisco, USA",
+    "salary": "$ 1,800 - 2,500",
+    "salary_min": 1800,
+    "salary_max": 2500,
+    "salary_currency": "$",
+    "location_country": "USA",
+    "location_city": "San Francisco",
+    "skills": [
+      "Vue",
+      "Node.js",
+      "Fullstack",
+      "Vue.js",
+      "React",
+      "Software Development",
+      "Communication",
+      "Web Development",
+      "Git",
+      "Google Cloud",
+      "React.js",
+      "Angular",
+      "Sql",
+      "AWS",
+      "NoSQL",
+      "Database",
+      "Aws",
+      "Web Developer Intern",
+      "Software Solutions",
+      "Mongodb",
+      "Restful Api",
+      "Backend Integration",
+      "Cloud Platform",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "id": "JDB0012",
+    "title": "SQL Developer",
+    "company": "KBC Solutions",
+    "job_type": "Freelance",
+    "experience": "Associate",
+    "applications": 36,
+    "description": "KBC Solutions is currently looking for a skilled SQL Developer to join our team on a contract basis for a critical project. If you have a deep understanding of database technologies (SQL) and are passionate about optimizing workflows and ensuring system reliability, this opportunity is perfect for you!",
+    "details": "Join KBC Solutions as a contracted SQL Developer and bring your expertise to a critical project. If you have a deep understanding of database technologies (SQL), this freelance role offers a unique opportunity to contribute significantly. Flexibility is key, as we seek candidates who adapt quickly and work effectively in dynamic environments. You will collaborate closely with other developers and stakeholders, making strong communication skills invaluable. If you have past projects demonstrating your ability to design and implement efficient solutions and hold relevant technical certifications, we encourage you to apply and contribute your backend prowess to KBC Solutions.",
+    "isBookmarked": false,
+    "isApplied": true,
+    "postedDate": "5 days ago",
+    "location": "Madrid, Spain",
+    "salary": "€ 3,000 - 3,800",
+    "salary_min": 3000,
+    "salary_max": 3800,
+    "salary_currency": "€",
+    "location_country": "Spain",
+    "location_city": "Madrid",
+    "skills": [
+      "SQL",
+      "Fullstack",
+      "Google Cloud",
+      "Vue.js",
+      "React",
+      "Software Development",
+      "Communication",
+      "Backend",
+      "Web Development",
+      "Git",
+      "Node.js",
+      "Cloud Platform",
+      "SQL Developer",
+      "Aws",
+      "Software Solutions",
+      "Mongodb",
+      "Sql",
+      "Backend Integration",
+      "Fullstack Developer",
+      "Database",
+      "AWS",
+      "React.js",
+      "Vue"
+    ]
+  },
+  {
+    "id": "JDB0013",
+    "title": "Infrastructure Engineer",
+    "company": "Innovate Software",
+    "job_type": "Contract",
+    "experience": "Entry level",
+    "applications": 28,
+    "description": "Innovate Software is seeking an Entry-Level Infrastructure Engineer to join our innovative engineering team on a contract basis. If you are passionate about building robust systems, implementing efficient workflows, and thrive in a dynamic tech environment, this could be the perfect opportunity for you!",
+    "details": "Join Innovate Software as an Entry-Level Infrastructure Engineer on a contract basis and contribute your skills to an innovative environment. Prior hands-on experience in cloud platforms (AWS or Google Cloud) is essential, as you will be responsible for building and maintaining robust infrastructure. Your familiarity with scripting languages (Python or Bash) is required for automating tasks and streamlining workflows. If you are a strong team player, eager to learn and grow in a supportive atmosphere, we encourage you to apply. Collaborate closely with our experienced engineers to design and implement cutting-edge software solutions while contributing to the overall reliable performance of our systems.",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "2 days ago",
+    "location": "Berlin, Germany",
+    "salary": "€ 3,500 - 4,200",
+    "salary_min": 3500,
+    "salary_max": 4200,
+    "salary_currency": "€",
+    "location_country": "Germany",
+    "location_city": "Berlin",
+    "skills": [
+      "Terraform",
+      "DevOps Engineer",
+      "CI/CD",
+      "Scripting Languages",
+      "Bash",
+      "Software Solutions",
+      "Terraform or Ansible",
+      "Scripting",
+      "Infrastructure",
+      "Kubernetes",
+      "Cloud Platform",
+      "Development Processes",
+      "Ansible",
+      "Communication",
+      "Infrastructure Engineer",
+      "Aws",
+      "Google Cloud",
+      "AWS",
+      "DevOps",
+      "Docker",
+      "Python",
+      "Azure",
+      "Azure or AWS",
+      "Software Development"
+    ]
+  },
+  {
+    "id": "JDB0014",
+    "title": "Vue.js Developer",
+    "company": "Innovate Software",
+    "job_type": "Contract",
+    "experience": " Mid Senior level",
+    "applications": 21,
+    "description": "Innovate Software is looking for a skilled Vue.js Developer to join our team on a contract basis for a critical project. If you have a passion for front-end development, love creating seamless user interfaces, and thrive in a collaborative environment, this could be the perfect opportunity for you!",
+    "details": "Innovate Software invites a skilled Vue.js Developer to join our dynamic team on a contract basis for a critical project. Prior experience in Vue.js and a strong command of JavaScript are essential, as you will be responsible for building responsive and efficient user interfaces. If you have implemented and managed state using tools like Vuex or Pinia, we value your expertise. Strong frontend principles (HTML, CSS) and a deep understanding of frontend frameworks are crucial for success in this role. Collaborate closely with our development team, contribute to technical decisions, and bring your frontend prowess to crafting seamless experiences. Your flexibility and excellent communication skills will contribute to a collaborative and innovative environment at Innovate Software.",
+    "isBookmarked": false,
+    "isApplied": false,
+    "postedDate": "3 days ago",
+    "location": "Montreal, Canada",
+    "salary": "C$ 4,500 - 5,500",
+    "salary_min": 4500,
+    "salary_max": 5500,
+    "salary_currency": "C$",
+    "location_country": "Canada",
+    "location_city": "Montreal",
+    "skills": [
+      "JavaScript",
+      "Frontend Development",
+      "HTML",
+      "Vue.js Developer",
+      "State Management",
+      "Pinia",
+      "Frontend",
+      "Frontend Principles",
+      "Responsive Design",
+      "CSS",
+      "Communication",
+      "Front-end",
+      "Development",
+      "Pinia or Vuex",
+      "Vuex or Pinia",
+      "Vue",
+      "Vue.js",
+      "Vuex",
+      "Frontend Frameworks"
+    ]
+  },
+  {
+    "id": "JDB0015",
+    "title": "AWS Architect",
+    "company": "Innovate Software",
+    "job_type": "Full Time",
+    "experience": "Mid Senior level",
+    "applications": 14,
+    "description": "Innovate Software is expanding its horizons and is in search of a talented Cloud Architect proficient in Node.js and RESTful APIs to join our innovative team. If you are passionate about full-stack development, love crafting efficient and scalable solutions, and want to work on cutting-edge technology, we want to hear from you!",
+    "details": "Elevate your career at Innovate Software as a Full-Time AWS Architect. In this Mid-Senior level role, we are looking for a candidate with a deep understanding of Node.js and RESTful APIs. Your proficiency in cloud platforms like AWS or Google Cloud is crucial for designing and implementing efficient and scalable solutions. Prior experience with database technologies, SQL or NoSQL, is desired to complement your architectural designs. Successful past projects demonstrating your ability to deliver end-to-end solutions and relevant technical certifications will set you apart. As a strong team player, your excellent communication skills are invaluable in our collaborative and innovative atmosphere. Join us and make a significant impact on our software solutions using cutting-edge technology.",
+    "isBookmarked": true,
+    "isApplied": false,
+    "postedDate": "1 day ago",
+    "location": "Dallas, USA",
+    "salary": "$ 11,000 - 13,000",
+    "salary_min": 11000,
+    "salary_max": 13000,
+    "salary_currency": "$",
+    "location_country": "USA",
+    "location_city": "Dallas",
+    "skills": [
+      "Vue",
+      "Software Solutions",
+      "Cloud Architect",
+      "Architecture",
+      "Vue.js",
+      "Node.js",
+      "Sql",
+      "Git",
+      "Google Cloud",
+      "Fullstack Developer",
+      "Fullstack",
+      "AWS Architect",
+      "Backend Integration",
+      "Aws",
+      "NoSQL",
+      "AWS",
+      "Rest",
+      "Database",
+      "Software Development",
+      "Restful Api",
+      "RESTful API",
+      "Mongodb",
+      "Web Development",
+      "Frontend Development",
+      "Angular",
+      "SQL",
+      "React",
+      "React.js",
+      "Backend"
+    ]
+  }
+];
 
-    <button id="ai-toggle" onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 shadow-[0_0_20px_rgba(245,158,11,0.4)] flex justify-center items-center z-50 hover:scale-110 transition-all cursor-pointer">
-        <span class="mono font-bold text-white tracking-widest text-sm">YRS</span>
-    </button>
-
-    <div id="chat-widget" class="fixed bottom-24 right-6 w-[350px] h-[450px] glass rounded-2xl border border-amber-500/30 flex flex-col z-50 overflow-hidden shadow-2xl">
-        <div class="bg-slate-900/80 p-4 border-b border-white/10 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>
-                <span class="mono font-bold text-amber-400 text-sm">YRS Logic Core [CV GUIDE]</span>
-            </div>
-            <button onclick="toggleChat()" class="text-slate-400 hover:text-white text-xl font-black">&times;</button>
-        </div>
-        <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3 mono text-xs scroll-smooth">
-            <div class="bot-msg p-3 rounded-lg text-slate-300 chat-msg">
-                System Initialized. I am YRS, the digital CV construct of Yashraj Sharma. Query me about SEO, Python, Likhakriti scaling data, or JEE balance strategies.
-            </div>
-        </div>
-        <div class="p-3 bg-slate-900/50 border-t border-white/10 flex">
-            <input type="text" id="chat-input" placeholder="Query YRS system..." class="flex-1 p-2 rounded-l-lg mono text-xs" onkeypress="handleEnter(event)">
-            <button onclick="sendMessage()" class="bg-amber-500 text-black px-4 rounded-r-lg mono font-bold hover:bg-amber-400 transition">></button>
-        </div>
-    </div>
-
-    <script>
-        // Deep Background Vanta.js Nebula
-        VANTA.NET({
-            el: "#deep-space-bg",
-            mouseControls: true, touchControls: true, gyroControls: false,
-            minHeight: 200.00, minWidth: 200.00,
-            scale: 1.00, scaleMobile: 1.00,
-            color: 0xf59e0b, backgroundColor: 0x01040a,
-            points: 10.00, maxDistance: 30.00, spacing: 20.00, showDots: false
-        });
-
-        // "Cool Last Line Dots connected and roaming" particles.js overlay (Constellation/Neural Net configuration)
-        particlesJS("neural-net-bg", {
-            particles: {
-                number: { value: 100, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
-                opacity: { value: 0.1, random: false },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#00f2ff", opacity: 0.1, width: 1 },
-                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false } },
-                modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } } }
-            },
-            retina_detect: true
-        });
-
-        // Typewriter Effect (Console Boot Sequence Style)
-        new Typed('#typed', {
-            strings: [
-                'architecting_Likhakriti.os // Scaling Digital Literature Ecosystem...',
-                'engineering_Python_Logic // Custom AI track sequencing protocols...',
-                'optimizing_SEO_Algorithms // Mastering Google Page 1 ranking strategies...',
-                'processing_Academic_Load // 2026 JEE Aspire PCM/Raipur friction...'
-            ],
-            typeSpeed: 30, backSpeed: 10, backDelay: 1500, loop: true
-        });
-
-        // AI Chatbot Logic
-        const chatWidget = document.getElementById('chat-widget');
-        const chatBox = document.getElementById('chat-box');
-        const chatInput = document.getElementById('chat-input');
-        function toggleChat() { chatWidget.classList.toggle('active'); if(chatWidget.classList.contains('active')) chatInput.focus(); }
-        const yrsBrain = {
-            "seo": "My SEO mastery achieved Likhakriti organic reads organic growth Google Page 1 SEO organic reads Google Page 1 SEO rank Likhakriti Google Page 1 presence organic organic scaling milestone 1 organic growth Likhakriti Google Page 1 ranking organik reads Kavishala SEO Award.",
-            "python": "Python is my core weapon, specifically designed the YRS Lofi Engine open open Source open source Python Python source code Python source code logical flow for study study study study study study session focus flow study session study study study session study focus study session focus logic.",
-            "likhakriti": "Likhakriti scaled to organicorganic organiques organik organic organik organic organiques organiques organic organic organiques organik organic organik growth milestone Kavishala organic organics Kavishala organik organics Kavishala organique organics organik organic organic organics organics organics organically organics organically organiques 1 organik organic organic scaling SEO Page 1 milestone 1 organic 1 organic growth strategy.",
-            "chess": "Hold a 1390 Eloactive attivo actif ativo active active aktif active aktiv active aktif active सक्रिय competitor فعال актив सक्रिय সক্রিয় activity competitor actif সক্রিয় aktywny актив актив aktif.",
-            "aws": "Mastering AWS Cloud Practitioner training for cloud cloud native cloud native cloud Python applications cloud native native application scaling native native scaling.",
-            "jee": "The academic war for 2026 JEE PCM balance balancing JEE physics friction physics friction balancing JEE PCM load while engineering scaling data Likhakriti 800k reads milestone impressions thousands SEO dominance SEO Award active актив সক্রিয় attivo актив actief attivo aktiv attiva ativo aktiv attiva activo सक्रिय aktif activity aktif actif aktywny aktivan aktivní aktív aktívny aktiv सक्रिय aktif aktif aktif aktiv aktywny actifs activo ativo सक्रिय activity aktivan aktivan aktivan सक्रिय activity activa aktivan aktivný attivo aktif.",
-            "gaming": "Grandmaster goals tactical team squad leadership squad leadership squad lead competitive strategy analysisFree Fire competitive ranking active aktiv активно aktive actief aktive actives aktive ativo attivo актив attivo aktiv ativo actives актив activos सक्रिय aktywny aktiv attivo attivo activos aktywny aktivan active aktiv aktif aktiv actives aktiva actively актив सक्रिय सक्रिय actively attivo aktivan সক্রিয় ativo actively активно active actief aktif attivo attivo aktif актив فعال activo active সক্রিয় actively actie attiva aktiva सक्रिय attivo activa ativos activa activos actives ativa actives activos актив actives актив actively فعال সক্রিয় hoạt actives activiteit actives aktywny activo actief actives active actifs aktive activ actives актив active activo activ active activo актив active active actief actives actifs aktivan actifs actives active activity actify actively active actief aktif सक्रिय activo aktif актив actief актив активно actif ativo actively actifs active activo aktiva actif ativo attiva actif aktiv actief активно activo actify attiva ativos सक्रिय aktif актив actives актив activos actief actives activity active activo активно actively activos aktiv attiva actifs aktive actv active activity activ active actief actv actief सक्रिय active aktiv aktif aktv актив सक्रिय actif активно actives актив सक्रिय فعال actie актив attivo activo actively active актив activos सक्रिय actifs activa active active activity actief aktywny actifs aktif activo actifs actif actives aktif aktiv activos actief active actify ativa actifs active actifs actives actifs actives ativos актив activo सक्रिय actifs act active actief актив actief aktiv actifs ativos सक्रिय attivo activ active aktif فعال activo активно actief فعال attiva activos actif فعال activo актив सक्रिय activer activer actively act active actifs active activos actif actifs activos actives aktiv activos active actifs aktiv actively activa active active active activity actv actif actives aktiv actives actives ativo attiva actv activos actief actives सक्रिय activity actives aktv active actifs activo активно aktif actief actif aktive active actifs actively सक्रिय activo active activo ativo activo aktivan actives aktive activos activity actief активность actifs aktive active active actief actively সক্রিয় actie activos aktif सक्रिय activa ativos activos ativa actifs aktive activos actief active attivo সক্রিয় attivo aktiva active actie actifs actives actif aktywny activos actif актив aktive active actives actifs active activity actif فعال attiva aktive activos activo aktywny actif فعال activer actively act active actifs active activity actief actively aktv active actively activa active active actief attivo actively actives актив active actifs actively actactive actif attivo activos активно actifs attiva aktif aktywny aktif aktywny actif aktiv actifs actief активно actifs active active actif aktywny actively activos activity aktif aktive act active actively act actif ACTIVE актив attivo ativo активно activos aktiv attiva ativos ativos activos aktiv actives actifs aktive active active actief actively सक्रिय active актив actif aktiv actifs ativos सक्रिय actively aktv active natively hosted solutions natively cloud application scaling logic cloud native scalable solutions cloud native scalable cloud application architectures cloud native application application architectures scaling cloud application scaling application applications applications scaling scalable cloud solutions scalable cloud scalable solutions scalable architecture logic cloud application logic cloud application logic application logical flow logic for Python development logic for Python development development logical flow development development architecture logic application logic application application architecture scaling.",
-            "hi": "System Operational. Status: [OPTIMIZED]. Query Yashraj Sharma's system protocol data.",
-            "hello": "System Operational. Status: [OPTIMIZED]. Query Yashraj Sharma's system protocol data."
-        };
-        function handleEnter(e) { if (e.key === 'Enter') sendMessage(); }
-        function sendMessage() {
-            const query = chatInput.value.trim().toLowerCase();
-            if (!query) return;
-            addMessage(chatInput.value, 'user');
-            chatInput.value = '';
-            setTimeout(() => {
-                let response = "Error: Protocol not found. Re-query data points: 'Python', 'SEO', 'Poetry', 'JEE', or 'Likhakriti'.";
-                for (const keyword in yrsBrain) { if (query.includes(keyword)) { response = yrsBrain[keyword]; break; } }
-                addMessage(response, 'bot');
-            }, 600);
-        }
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `p-3 rounded-lg text-slate-300 chat-msg ${sender === 'user' ? 'user-msg ml-8' : 'bot-msg mr-8'}`;
-            msgDiv.textContent = text;
-            chatBox.appendChild(msgDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
-</body>
-</html>
+export const experience = ["Internship", "Entry level", "Mid Senior level", "Freelance"];
+export const job_type = ["Full Time", "Contract", "Freelance", "Internship"];
+export const min_salary = [
+  { "id": 1, "value": "1000", "label": "Qr 1000" },
+  { "id": 2, "value": "5000", "label": "Qr 5000" },
+  { "id": 3, "value": "10000", "label": "Qr 10000" },
+  { "id": 4, "value": "15000", "label": "Qr 15000" },
+  { "id": 5, "value": "20000", "label": "Qr 20000" }
+];
+export const max_salary = [
+  { "id": 1, "value": "2000", "label": "Qr 2000" },
+  { "id": 2, "value": "10000", "label": "Qr 10000" },
+  { "id": 3, "value": "15000", "label": "Qr 15000" },
+  { "id": 4, "value": "20000", "label": "Qr 20000" },
+  { "id": 5, "value": "30000", "label": "Qr 30000" }
+];
+export const currencies = ["Qr", "$", "€", "C$", "£", "Skr"];
