@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashraj Sharma | Likhakriti.OS</title>
+    <title>Yashraj Sharma | Founder of Likhakriti | Python Dev & SEO Strategist</title>
+    <meta name="description" content="Explore the digital orbit of Yashraj Sharma, founder of Likhakriti (800k+ reads). Python developer, 1390 Elo chess strategist, and digital growth architect.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600;700&family=Space+Mono&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -22,21 +23,14 @@
 
         /* The Solar System CV */
         .solar-system { position: relative; width: 320px; height: 320px; margin: 0 auto; }
-        
         .sun {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
             border: 3px solid #f59e0b; box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
-            z-index: 10; background-color: #111827; /* Fallback color */
-            display: flex; align-items: center; justify-content: center;
-            color: #f59e0b; font-size: 12px; text-align: center;
+            z-index: 10; background-color: #111827; display: flex; align-items: center; justify-content: center;
         }
 
-        .orbit {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 50%;
-        }
-
+        .orbit { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 50%; }
         .orbit-1 { width: 220px; height: 220px; animation: spin 12s linear infinite; }
         .orbit-2 { width: 300px; height: 300px; animation: spin 20s linear infinite reverse; }
 
@@ -48,9 +42,6 @@
         /* Chatbot UI */
         #chat-widget { transition: transform 0.3s ease, opacity 0.3s ease; transform: translateY(150%); opacity: 0; }
         #chat-widget.active { transform: translateY(0); opacity: 1; }
-        input:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
-        .chat-msg { animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -60,11 +51,11 @@
     <nav class="fixed top-0 w-full glass z-50 px-6 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
             <img src="./logo.png" alt="LK Logo" class="w-8 h-8 rounded" onerror="this.style.display='none'">
-            <div class="text-xl font-bold tracking-widest text-white">LIKHAKRITI<span class="glow-amber">.OS</span></div>
+            <div class="text-xl font-bold tracking-widest text-white uppercase italic">LIKHAKRITI<span class="glow-amber">.OS</span></div>
         </div>
         <div class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] font-bold text-slate-400">
             <a href="#orbit" class="hover:text-amber-400 transition">Galaxy CV</a>
-            <a href="#comets" class="hover:text-cyan-400 transition">Achieving Comets</a>
+            <a href="#comets" class="hover:text-cyan-400 transition">Mission Logs</a>
             <a href="#acks" class="hover:text-purple-400 transition">Ack System</a>
         </div>
     </nav>
@@ -73,23 +64,20 @@
         <div class="mb-6 border border-amber-500/30 bg-amber-500/10 rounded-full px-6 py-1 text-xs font-bold uppercase tracking-widest text-amber-400">
             System Online // Raipur Console
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white uppercase">Yashraj <span class="glow-cyan">Sharma</span></h1>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white uppercase italic">Yashraj <span class="glow-cyan">Sharma</span></h1>
         <div class="text-lg mono text-slate-400 h-10">> <span id="typed"></span></div>
     </section>
 
     <section id="orbit" class="py-24 px-6 max-w-6xl mx-auto border-t border-slate-800">
         <h2 class="text-center text-3xl font-bold mb-16 tracking-widest uppercase">The <span class="glow-amber">Galactic</span> CV</h2>
-        
         <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-            
             <div class="solar-system">
                 <div class="orbit orbit-1"><div class="planet-cyan"></div></div>
                 <div class="orbit orbit-2"><div class="planet-purple"></div></div>
-                <img src="./profile.jpg" alt="Yashraj Core" class="sun" onerror="this.onerror=null; this.outerHTML='<div class=\'sun\'>YASHRAJ</div>'">
+                <img src="./profile.jpg" alt="Core" class="sun" onerror="this.onerror=null; this.outerHTML='<div class=\'sun font-bold text-amber-500\'>YASHRAJ</div>'">
             </div>
-
             <div class="max-w-lg text-left">
-                <h3 class="text-2xl font-bold mb-4 text-white uppercase">System Architect</h3>
+                <h3 class="text-2xl font-bold mb-4 text-white uppercase">System Protocol: Architect</h3>
                 <div class="flex flex-wrap gap-2 mb-6 mono text-xs">
                     <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded border border-cyan-500/30">Student Developer</span>
                     <span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded border border-amber-500/30">Digital Strategist</span>
@@ -99,160 +87,80 @@
                     I started as a "ghost" on LinkedIn, struggling in the digital bubble. Through sheer determination and system optimization, I engineered my own growth, achieving a <strong class="text-cyan-400">12.5x reach ratio</strong> and scaling Likhakriti to over 800,000 reads.
                 </p>
                 <p class="text-slate-400 leading-relaxed">
-                    Whether I am writing Python scripts, preparing for the JEE, or penning poetry under my personal brand, I treat every obstacle as a system waiting to be solved.
+                    Whether I am writing Python scripts, preparing for the JEE, or penning poetry under my personal brand, I view every obstacle as a system waiting to be optimized.
                 </p>
             </div>
         </div>
     </section>
 
     <section id="comets" class="py-24 px-6 max-w-6xl mx-auto border-t border-slate-800">
-        <h2 class="text-center text-3xl font-bold mb-16 tracking-widest uppercase">Achieving <span class="glow-cyan">Comets</span></h2>
-        
+        <h2 class="text-center text-3xl font-bold mb-16 tracking-widest uppercase italic">Achieving <span class="glow-cyan">Comets</span></h2>
         <div class="grid md:grid-cols-2 gap-8">
             <div class="glass p-8 rounded-2xl card-hover border border-slate-700 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 blur-3xl rounded-full"></div>
-                <div class="mono text-amber-400 text-xs mb-2 tracking-widest">COMET 01 // SEO MASTERY</div>
-                <h3 class="text-2xl font-bold mb-4 text-white">Likhakriti Brand Scaling</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Built a literary ecosystem from zero. Defied algorithms to rank on Google Page 1 using data-backed SEO tactics. Turned 6 initial impressions into thousands, ultimately securing 800,000+ organic reads across platforms.
-                </p>
+                <div class="mono text-amber-400 text-xs mb-2 tracking-widest uppercase">Protocol 01 // SEO Mastery</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">Likhakriti Scaling</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Built a literary ecosystem from zero. Defied algorithms to rank on Google Page 1 using data-backed SEO tactics, turning 6 initial impressions into thousands, ultimately securing 800,000+ organic reads.</p>
             </div>
             <div class="glass p-8 rounded-2xl card-hover border border-slate-700 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-3xl rounded-full"></div>
-                <div class="mono text-cyan-400 text-xs mb-2 tracking-widest">COMET 02 // PYTHON LOGIC</div>
-                <h3 class="text-2xl font-bold mb-4 text-white">YRS Lofi Audio Engine</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Engineered an open-source Python application. Built custom logical flow to sequence audio tracks specifically designed to enhance focus during intense study sessions and development grinds.
-                </p>
+                <div class="mono text-cyan-400 text-xs mb-2 tracking-widest uppercase">Protocol 02 // Python Logic</div>
+                <h3 class="text-2xl font-bold mb-4 text-white">YRS Audio Engine</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Engineered an open-source Python application. Built custom logical flow to sequence audio tracks designed specifically to enhance focus during intense study sessions and development grinds.</p>
             </div>
         </div>
     </section>
 
     <section id="acks" class="py-24 px-6 max-w-6xl mx-auto border-t border-slate-800">
-        <h2 class="text-center text-3xl font-bold mb-16 tracking-widest uppercase">Ack <span class="text-purple-400">Solar System</span></h2>
-        <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-            A system is only as strong as the gravity holding it together. Acknowledging the orbits of guidance and friction that optimized my journey.
-        </p>
-        
+        <h2 class="text-center text-3xl font-bold mb-16 tracking-widest uppercase">Ack <span class="text-purple-400">System</span></h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div class="glass p-6 rounded-xl border border-slate-700 hover:border-purple-400 transition">
-                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-purple-500/20 border border-purple-500 flex items-center justify-center text-purple-400">01</div>
-                <h3 class="font-bold text-white mb-2">The Core Family</h3>
+                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-purple-500/20 border border-purple-500 flex items-center justify-center text-purple-400 font-bold">01</div>
+                <h3 class="font-bold text-white mb-2 uppercase">The Core Family</h3>
                 <p class="text-xs text-slate-400">Unwavering support gravity.</p>
             </div>
             <div class="glass p-6 rounded-xl border border-slate-700 hover:border-purple-400 transition">
-                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 border border-cyan-500 flex items-center justify-center text-cyan-400">02</div>
-                <h3 class="font-bold text-white mb-2">Mentors & Guides</h3>
+                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 border border-cyan-500 flex items-center justify-center text-cyan-400 font-bold">02</div>
+                <h3 class="font-bold text-white mb-2 uppercase">Mentors & Guides</h3>
                 <p class="text-xs text-slate-400">Navigational data protocols.</p>
             </div>
             <div class="glass p-6 rounded-xl border border-slate-700 hover:border-purple-400 transition">
-                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400">03</div>
-                <h3 class="font-bold text-white mb-2">The Readers</h3>
+                <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400 font-bold">03</div>
+                <h3 class="font-bold text-white mb-2 uppercase">The Readers</h3>
                 <p class="text-xs text-slate-400">The 800k+ constellation.</p>
             </div>
         </div>
     </section>
 
-    <footer class="p-8 text-center border-t border-slate-800 mono text-xs text-slate-600">
-        YASHRAJ SHARMA // (C) 2026 // RAIPUR.CG
-    </footer>
+    <footer class="p-8 text-center border-t border-slate-800 mono text-xs text-slate-600">YASHRAJ SHARMA // (C) 2026 // RAIPUR.CG</footer>
 
-    <button onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-amber-500 text-black shadow-[0_0_15px_#f59e0b] flex justify-center items-center z-50 hover:scale-110 transition-all font-bold mono">
-        YRS
-    </button>
-
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-amber-500 text-black shadow-[0_0_15px_#f59e0b] flex justify-center items-center z-50 hover:scale-110 transition-all font-bold mono">YRS</button>
     <div id="chat-widget" class="fixed bottom-24 right-6 w-[320px] h-[400px] glass rounded-xl border border-amber-500/50 flex flex-col z-50 overflow-hidden shadow-2xl">
-        <div class="bg-slate-900 p-4 border-b border-slate-800 flex justify-between items-center">
-            <span class="mono font-bold text-amber-400 text-xs tracking-widest">YRS LOGIC CORE</span>
-            <button onclick="toggleChat()" class="text-slate-400 hover:text-white">&times;</button>
-        </div>
-        <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 mono text-xs">
-            <div class="bg-amber-500/10 border-l-2 border-amber-500 p-3 rounded text-slate-300">
-                System Active. Ask me about SEO, Python, Likhakriti, or Chess.
-            </div>
-        </div>
-        <div class="p-3 bg-slate-900 border-t border-slate-800 flex">
-            <input type="text" id="chat-input" placeholder="Query..." class="flex-1 p-2 rounded-l bg-slate-800 text-white mono text-xs border border-slate-700" onkeypress="handleEnter(event)">
-            <button onclick="sendMessage()" class="bg-amber-500 text-black px-3 rounded-r font-bold hover:bg-amber-400">></button>
-        </div>
+        <div class="bg-slate-900 p-4 border-b border-slate-800 flex justify-between items-center"><span class="mono font-bold text-amber-400 text-xs tracking-widest">YRS LOGIC CORE</span><button onclick="toggleChat()" class="text-slate-400 hover:text-white">&times;</button></div>
+        <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 mono text-xs"><div class="bg-amber-500/10 border-l-2 border-amber-500 p-3 rounded text-slate-300">System Active. Query me about SEO, Python, Likhakriti, or Chess.</div></div>
+        <div class="p-3 bg-slate-900 border-t border-slate-800 flex"><input type="text" id="chat-input" placeholder="Query..." class="flex-1 p-2 rounded-l bg-slate-800 text-white mono text-xs border border-slate-700" onkeypress="handleEnter(event)"><button onclick="sendMessage()" class="bg-amber-500 text-black px-3 rounded-r font-bold hover:bg-amber-400">></button></div>
     </div>
 
     <script>
-        // Particles.js Starry Constellation Background
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.3, random: true },
-                size: { value: 2, random: true },
-                line_linked: { enable: true, distance: 150, color: "#22d3ee", opacity: 0.2, width: 1 },
-                move: { enable: true, speed: 1, direction: "none", random: true, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false } },
-                modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } } }
-            },
-            retina_detect: true
-        });
-
-        // Typewriter Effect
-        new Typed('#typed', {
-            strings: [
-                'Architecting Likhakriti.OS...',
-                'Scaling to 800,000+ Reads...',
-                'Developing Python Logic...',
-                'Balancing JEE 2026...'
-            ],
-            typeSpeed: 50, backSpeed: 30, loop: true
-        });
-
-        // Chatbot Logic (Cleaned up, NO repeated text)
+        particlesJS("particles-js", { particles: { number: { value: 60, density: { enable: true, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "circle" }, opacity: { value: 0.3, random: true }, size: { value: 2, random: true }, line_linked: { enable: true, distance: 150, color: "#22d3ee", opacity: 0.2, width: 1 }, move: { enable: true, speed: 1, direction: "none", random: true, out_mode: "out" } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" } }, modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } } } }, retina_detect: true });
+        new Typed('#typed', { strings: ['Architecting Likhakriti.OS...', 'Scaling to 800,000+ Reads...', 'Developing Python Logic...', 'Balancing JEE 2026...'], typeSpeed: 50, backSpeed: 30, loop: true });
+        
         const chatWidget = document.getElementById('chat-widget');
         const chatBox = document.getElementById('chat-box');
         const chatInput = document.getElementById('chat-input');
-        
         function toggleChat() { chatWidget.classList.toggle('active'); if(chatWidget.classList.contains('active')) chatInput.focus(); }
-        
-        const yrsBrain = {
-            "seo": "I used data-backed SEO tactics to rank on Google Page 1. This is how I multiplied 6 impressions into thousands of organic reads.",
-            "python": "I built the YRS Lofi Engine, an open-source Python audio player. It uses custom logical flow to enhance study focus.",
-            "likhakriti": "Likhakriti is my digital literary ecosystem. I scaled it to over 800,000 reads.",
-            "chess": "I play competitive chess with a 1390 Elo. It teaches me strategic thinking for both code and business.",
-            "jee": "Preparing for JEE 2026 is a grind. I view the balance between physics and programming as a system to be optimized.",
-            "hi": "Hello. I am the YRS construct. What data do you require?",
-            "hello": "Hello. I am the YRS construct. What data do you require?"
-        };
-
+        const yrsBrain = { "seo": "I used data-backed SEO tactics to rank on Google Page 1. This is how I multiplied 6 impressions into thousands of organic reads.", "python": "I built the YRS Lofi Engine, an open-source Python audio player. It uses custom logical flow to enhance study focus.", "likhakriti": "Likhakriti is my digital literary ecosystem. I scaled it to over 800,000 reads.", "chess": "I play competitive chess with a 1390 Elo. It teaches me strategic thinking for both code and business.", "jee": "Preparing for JEE 2026 is a grind. I view the balance between physics and programming as a system to be optimized." };
         function handleEnter(e) { if (e.key === 'Enter') sendMessage(); }
-
         function sendMessage() {
             const query = chatInput.value.trim().toLowerCase();
             if (!query) return;
-            
-            // Add user message
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-cyan-500/10 border-r-2 border-cyan-500 p-3 rounded text-slate-300 text-right ml-8 chat-msg';
-            userMsg.textContent = chatInput.value;
-            chatBox.appendChild(userMsg);
-            
-            chatInput.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            // Fake delay for bot response
+            const uM = document.createElement('div'); uM.className = 'bg-cyan-500/10 border-r-2 border-cyan-500 p-3 rounded text-slate-300 text-right ml-8'; uM.textContent = chatInput.value; chatBox.appendChild(uM);
+            chatInput.value = ''; chatBox.scrollTop = chatBox.scrollHeight;
             setTimeout(() => {
-                let response = "Data not found. Try asking about SEO, Python, Likhakriti, or Chess.";
-                for (const key in yrsBrain) { if (query.includes(key)) { response = yrsBrain[key]; break; } }
-                
-                const botMsg = document.createElement('div');
-                botMsg.className = 'bg-amber-500/10 border-l-2 border-amber-500 p-3 rounded text-slate-300 mr-8 chat-msg';
-                botMsg.textContent = response;
-                chatBox.appendChild(botMsg);
-                chatBox.scrollTop = chatBox.scrollHeight;
+                let res = "Data not found. Try asking about SEO, Python, Likhakriti, or Chess.";
+                for (const k in yrsBrain) { if (query.includes(k)) { res = yrsBrain[k]; break; } }
+                const bM = document.createElement('div'); bM.className = 'bg-amber-500/10 border-l-2 border-amber-500 p-3 rounded text-slate-300 mr-8'; bM.textContent = res; chatBox.appendChild(bM); chatBox.scrollTop = chatBox.scrollHeight;
             }, 600);
         }
     </script>
 </body>
-    </html>
-                        
+            </html>
+                    
